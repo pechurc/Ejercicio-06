@@ -29,21 +29,7 @@ public class Mapper<T> {
                     MappedTo mappedTo = field.getAnnotation(MappedTo.class);
                     
                     try {  
-                        if (field.getType() == Long.class) {                        
-                            field.set(t, resultSet.getLong(mappedTo.columnName()));
-                        }
-                        
-                        if (field.getType() == Integer.class) {                        
-                            field.set(t, resultSet.getInt(mappedTo.columnName()));
-                        }
-                        
-                        if (field.getType() == BigDecimal.class) {                        
-                            field.set(t, resultSet.getBigDecimal(mappedTo.columnName()));
-                        }
-                        
-                        if (field.getType() == String.class) {                        
-                            field.set(t, resultSet.getString(mappedTo.columnName()));
-                        }                    
+                        field.set(t, resultSet.getObject(mappedTo.columnName(), field.getType()));
                     } catch (IllegalArgumentException 
                             | IllegalAccessException | SQLException e) {
                         e.printStackTrace();
