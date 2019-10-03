@@ -1,12 +1,23 @@
 package com.eiv.entities;
 
+import com.eiv.annotations.Mappeable;
+import com.eiv.annotations.MappedTo;
+
+@Mappeable
 public class BeneficiarioEntity {
+    @MappedTo(columnName = "id")
     private Long id;
+    @MappedTo(columnName = "nombre")
     private String nombre;
+    @MappedTo(columnName = "apellido")
     private String apellido;
+    @MappedTo(columnName = "nro_documento")
     private String nroDocumento;
+    @MappedTo(columnName = "cuil")
     private String nroCuil;
+    @MappedTo(columnName = "domicilio")
     private String domicilio;
+    @MappedTo(columnName = "sexo")
     private String sexo;
     
     public BeneficiarioEntity() { }

@@ -18,16 +18,15 @@ public class JdbcTemplate {
         this.conn = conn;
     }
     
-    public <T> List<T> query(String sql, RowMapper<T> rowMapper) {
-        
+    public <T> List<T> query(String sql, Class<T> clazz) {
+        Mapper<T> mapper = new Mapper<>();
         List<T> resultados = new ArrayList<>();
         
         try (PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
             
             while (rs.next()) {
-                T t = rowMapper.mapRow(rs, rs.getRow());
-                
+                T t = mapper.mapRow(rs, clazz);                
                 resultados.add(t);
             }
         } catch (SQLException e) {

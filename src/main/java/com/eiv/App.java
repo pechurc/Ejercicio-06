@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.eiv.entities.BeneficiarioEntity;
 
+
 @Configuration
 public class App {
     
@@ -30,19 +31,7 @@ public class App {
     public void run() {
         JdbcTemplate template = new JdbcTemplate(conn);
         
-        List<BeneficiarioEntity> beneficiarios = template.query(SQL, (rs, row) -> {            
-            BeneficiarioEntity beneficiario = new BeneficiarioEntity();
-            
-            beneficiario.setId(rs.getLong("id"));
-            beneficiario.setApellido(rs.getString("apellido"));
-            beneficiario.setNombre(rs.getString("nombre"));
-            beneficiario.setDomicilio(rs.getString("domicilio"));
-            beneficiario.setNroCuil(rs.getString("cuil"));
-            beneficiario.setNroDocumento(rs.getString("nro_documento"));
-            beneficiario.setSexo(rs.getString("sexo"));
-            
-            return beneficiario;
-        });
+        List<BeneficiarioEntity> beneficiarios = template.query(SQL, BeneficiarioEntity.class);
         
         beneficiarios.forEach(beneficiario -> {
             System.out.println(beneficiario.toString());
