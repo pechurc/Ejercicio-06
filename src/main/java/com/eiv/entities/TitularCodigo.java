@@ -48,7 +48,7 @@ public class TitularCodigo {
 
     @Override
     public String toString() {
-        return "TitularCodigo [id=" + id + ", nombre=" + nombre + ", nombreAbreviado=" 
+        return "TitularCodigo: [id=" + id + ", nombre=" + nombre + ", nombreAbreviado=" 
                 + nombreAbreviado + ", direccion=" + direccion + "]";
     }   
 }
